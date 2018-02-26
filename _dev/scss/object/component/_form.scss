@@ -1,0 +1,429 @@
+@charset 'UTF-8';
+
+/*
+#overview
+フォーム
+*/
+
+/*
+#styleguide
+フォームレイアウト
+
+```
+<form action="dummy" method="post" novalidate class="c-form-lyt">
+  <table class="c-form-lyt__tbl">
+    <tbody>
+      <tr>
+        <th><label for="input_name" class="c-form-lyt__label">お名前<span class="c-form-icon -required">必須</span></label></th>
+        <td><input type="text" name="name" placeholder="山田太郎" required id="input_name" class="c-form-input"></td>
+      </tr>
+      <tr>
+        <th><label for="input_tel" class="c-form-lyt__label">電話番号<span class="c-form-icon -required">必須</span></label></th>
+        <td><input type="tel" name="tel" placeholder="092-123-4567" required id="input_tel" class="c-form-input"></td>
+      </tr>
+      <tr>
+        <th><label for="input_email" class="c-form-lyt__label">メールアドレス<span class="c-form-icon -required">必須</span></label></th>
+        <td><input type="email" name="email" placeholder="mail@example.com" required id="input_email" class="c-form-input"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="c-form-lyt__submit"><button type="submit" class="c-btn -submit fn-formValidate__submit">確認する</button></div>
+</form><!-- /.c-form-lyt -->
+```
+*/
+
+.c-form-lyt {
+  margin: 0 auto;
+  max-width: 780px;
+
+  &__tbl {
+    width: 100%;
+    text-align: left;
+  }
+  &__label {
+    position: relative;
+    display: block;
+
+    .c-form-icon {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  &__submit {
+    text-align: center;
+  }
+
+  @include breakPoint(overTablet) {
+    &__tbl {
+      margin-bottom: 22px;
+
+      tr {
+        & + tr {
+          th,
+          td {
+            border-top: 1px dashed $color-effect;
+          }
+        }
+      }
+      tr:last-child {
+        th,
+        td {
+          padding-bottom: 0 !important;
+        }
+      }
+      th,
+      td {
+        box-sizing: border-box;
+      }
+      th {
+        padding: 21px 0 20px 12px;
+        width: 248px;
+        line-height: 1;
+      }
+      td {
+        padding: 12px 21px;
+      }
+    }
+  }
+
+  @include breakPoint(onlySP) {
+    &__tbl {
+      display: block;
+
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+      }
+      tr {
+        th {
+          margin-top: 18px;
+        }
+      }
+      th {
+        margin-bottom: 10px;
+        border-bottom: 1px dashed $color-effect;
+        padding: 0 0 8px;
+      }
+    }
+  }
+}
+
+
+/*
+#styleguide
+必須アイコン
+
+```
+<span class="c-form-icon -required">必須</span>
+```
+*/
+
+/*
+#styleguide
+任意アイコン
+
+```
+<span class="c-form-icon -optional">任意</span>
+```
+*/
+
+.c-form-icon {
+  display: inline-block;
+  border-radius: 2px;
+  padding: 3px 6px 4px;
+  font-size: 1.2rem;
+  line-height: 1;
+  font-weight: normal;
+  color: #fff;
+
+  &.-required {
+    background: #d36161;
+  }
+  &.-optional {
+    background: #5e89e0;
+  }
+}
+
+
+/*
+#styleguide
+テキストフィールド
+
+type属性は内容に応じて適切なものに変更してください。
+
+```
+<input type="text" name="name" placeholder="山田太郎" required id="input_name" class="c-form-input">
+```
+*/
+
+.c-form-input {
+  box-sizing: border-box;
+  border: 1px solid $color-effect;
+  width: 100%;
+  font-size: 1.6rem;
+  vertical-align: top;
+
+  &.is-error {
+    border: 1px solid #db7272;
+    background: #fff2f2;
+  }
+  &[disabled] {
+    background: #f0f0f0;
+  }
+
+  @include breakPoint(overTablet) {
+    padding: 6px 12px;
+  }
+  @include breakPoint(onlySP) {
+    padding: 5px 10px;
+  }
+}
+
+
+/*
+#styleguide
+ラジオ / チェックボックスリスト
+
+```
+<ul class="c-form-list">
+  <li class="c-form-list__item">
+    <label class="c-form-radio"><input type="radio" name="contact_type" value="項目1" required><span>項目1</span></label>
+  </li>
+  <li class="c-form-list__item">
+    <label class="c-form-radio"><input type="radio" name="contact_type" value="項目2" required><span>項目2</span></label>
+  </li>
+</ul>
+```
+*/
+
+.c-form-list {
+  @include clearfix();
+
+  &__item {
+    float: left;
+  }
+
+  @include breakPoint(overTablet) {
+    margin: -22px 0 0 -22px;
+
+    &__item {
+      margin: 22px 0 0 22px;
+    }
+  }
+  @include breakPoint(onlySP) {
+    margin: -18px 0 0 -18px;
+
+    &__item {
+      margin: 18px 0 0 18px;
+    }
+  }
+}
+
+
+/*
+#styleguide
+ラジオボタン
+
+```
+<ul class="c-form-list">
+  <li class="c-form-list__item">
+    <label class="c-form-radio"><input type="radio" name="contact_type" value="項目1" required><span>項目1</span></label>
+  </li>
+  <li class="c-form-list__item">
+    <label class="c-form-radio"><input type="radio" name="contact_type" value="項目2" required><span>項目2</span></label>
+  </li>
+  <li class="c-form-list__item">
+    <label class="c-form-radio"><input type="radio" name="contact_type" value="項目3" required><span>項目3</span></label>
+  </li>
+</ul>
+```
+*/
+
+.c-form-radio {
+  position: relative;
+  display: inline-block;
+  padding-left: 25px;
+
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    content: '';
+    border: 1px solid $color-effect;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    transform: translateY(-54%);
+  }
+
+  input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+
+    &:checked + span {
+      &::before {
+        display: block;
+      }
+    }
+  }
+  span {
+    &::before {
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      content: '';
+      display: none;
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      background: #3ec144;
+      transform: translateY(-56%);
+    }
+  }
+}
+
+
+/*
+#styleguide
+チェックボックス
+
+```
+<ul class="c-form-list">
+  <li class="c-form-list__item">
+    <label class="c-form-check"><input type="checkbox" name="hours" value="項目1"><span>項目1</span></label>
+  </li>
+  <li class="c-form-list__item">
+    <label class="c-form-check"><input type="checkbox" name="hours" value="項目2"><span>項目2</span></label>
+  </li>
+</ul>
+```
+*/
+
+.c-form-check {
+  position: relative;
+  display: inline-block;
+  padding-left: 25px;
+
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    content: '';
+    border: 1px solid $color-effect;
+    border-radius: 2px;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    transform: translateY(-54%);
+  }
+
+  input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+
+    &:checked + span {
+      &::before {
+        display: block;
+      }
+    }
+  }
+  span {
+    &::before {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      content: '✔︎';
+      display: none;
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      line-height: 1;
+      color: #3ec144;
+    }
+  }
+}
+
+
+/*
+#styleguide
+テキストエリア
+
+```
+<textarea name="comment" id="textarea_comment" class="c-form-textarea"></textarea>
+```
+*/
+
+.c-form-textarea {
+  box-sizing: border-box;
+  border: 1px solid $color-effect;
+  width: 100%;
+  height: 160px;
+  font-size: 1.6rem;
+  vertical-align: top;
+
+  &.is-error {
+    border: 1px solid #db7272;
+    background: #fff2f2;
+  }
+
+  @include breakPoint(overTablet) {
+    padding: 6px 12px;
+  }
+  @include breakPoint(onlySP) {
+    padding: 5px 10px;
+  }
+}
+
+
+/*
+#styleguide
+セレクトボックス
+
+```
+<select name="pref" required id="select_pref" class="c-form-select">
+  <option value="">選択してください</option>
+  <option value="北海道">北海道</option>
+  <option value="青森県">青森県</option>
+  <option value="福岡県">福岡県</option>
+</select>
+```
+*/
+
+.c-form-select {
+  background: #fff;
+  font-size: 1.6rem;
+
+  @include breakPoint(overTablet) {
+    padding: 6px 12px;
+  }
+}
+
+
+/*
+#styleguide
+エラーテキスト
+
+```
+<p class="c-form-error">メールアドレスが正しくありません。</p>
+```
+*/
+
+.c-form-error {
+  margin-bottom: 6px;
+  font-size: 1.4rem;
+  line-height: 1.3;
+  color: #d62640;
+}

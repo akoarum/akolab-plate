@@ -1,0 +1,341 @@
+@charset 'UTF-8';
+
+// ================================
+// ヘッダー
+// ================================
+
+.js-available {
+  .fn-header {
+    position: relative;
+    z-index: 100;
+
+    &__layer {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .8);
+    }
+    &__menuBtn {
+      position: relative;
+      float: right;
+      margin-left: 8px;
+      width: 42px;
+      height: 42px;
+
+      &::before,
+      &::after,
+      span::before {
+        position: absolute;
+        left: 5px;
+        content: '';
+        width: 32px;
+        height: 3px;
+        background: $color-text;
+        transition: all .3s ease-in-out;
+      }
+      &::before {
+        top: 12px;
+      }
+      &::after {
+        bottom: 12px;
+      }
+      span::before {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &.is-expanded {
+        &::before {
+          transform: rotate(45deg);
+          top: 20px;
+        }
+        &::after {
+          transform: rotate(-45deg);
+          bottom: 19px;
+        }
+        span::before {
+          opacity: 0;
+        }
+      }
+    }
+
+    @include breakPoint(overTablet) {
+      &__menuBtn {
+        display: none;
+      }
+    }
+    @include breakPoint(onlySP) {
+      width: 100%;
+
+      &__menu {
+        position: absolute;
+        display: none;
+        width: 100%;
+        background: #fff;
+        z-index: 100;
+      }
+    }
+  }
+}
+
+
+// ================================
+// パンくず
+// ================================
+
+.js-available {
+  .fn-breadcrumb {
+    @include breakPoint(onlySP) {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
+
+
+// ================================
+// トグル
+// ================================
+
+.js-available {
+  .fn-toggle {
+    &__handler {
+      button {
+        position: relative;
+        display: block;
+        box-sizing: border-box;
+        padding-right: 32px;
+        width: 100%;
+        font-size: inherit;
+        font-weight: inherit;
+        text-align: left;
+
+        &::after {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          content: '';
+          margin-top: -5px;
+          border-width: 9px 6px;
+          border-style: solid;
+          border-color: $color-text transparent transparent;
+          transition: all .3s ease;
+        }
+      }
+    }
+
+    &.is-expanded {
+      .fn-toggle {
+        &__handler {
+          button {
+            &::after {
+              margin-top: -13px;
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// ================================
+// タブ
+// ================================
+
+.js-available {
+  .fn-tab {
+    &__list {
+      a {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+// ================================
+// モーダル
+// ================================
+
+.js-available {
+  .fn-modal {
+    &__layer {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 110%;
+      background: rgba(0, 0, 0, .82);
+      z-index: 999;
+    }
+    &__content {
+      position: absolute;
+      padding: 24px 12px;
+      background: #fff;
+      z-index: 1000;
+    }
+    &__close {
+      position: absolute;
+      right: 0;
+      top: -46px;
+      width: 40px;
+      height: 40px;
+
+      &::before,
+      &::after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 3px;
+        background: #fff;
+      }
+      &::before {
+        left: 0;
+        top: 44%;
+        transform: rotate(45deg);
+      }
+      &::after {
+        left: 0;
+        top: 44%;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+
+// ================================
+// カルーセル
+// ================================
+
+.js-available {
+  .fn-carousel {
+    position: relative;
+
+    &__mainList {
+      @include clearfix();
+    }
+    &__mainItem {
+      float: left;
+    }
+    &__controllerItem {
+      position: absolute;
+
+      &.is-hide {
+        button {
+          background: #e7e7e7;
+        }
+      }
+
+      button {
+        border-radius: 50%;
+        background: #71c4fc;
+        line-height: 1;
+        transition: background .5s ease;
+        outline: none;
+      }
+    }
+    &__pager {
+      text-align: center;
+      font-size: 0;
+    }
+    &__pagerItem {
+      display: inline-block;
+      font-size: 1rem;
+      line-height: 1;
+
+      &:first-child {
+        margin-left: 0;
+      }
+      &.is-current {
+        button {
+          background: #71c4fc;
+        }
+      }
+
+      button {
+        border-radius: 50%;
+        background: #e7e7e7;
+        line-height: 1;
+        text-indent: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        transition: background .5s ease;
+        outline: none;
+      }
+    }
+
+    @include breakPoint(overTablet) {
+      margin-bottom: 44px;
+
+      &__main {
+        margin-bottom: 12px;
+      }
+      &__controllerItem {
+        top: calc(50% - 36px);
+
+        &.-prev {
+          left: -8px;
+        }
+        &.-next {
+          right: -8px;
+        }
+        &.is-hide {
+          button {
+            background: #e7e7e7;
+          }
+        }
+
+        button {
+          width: 36px;
+          height: 36px;
+        }
+      }
+      &__pagerItem {
+        margin-left: 8px;
+
+        button {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+    @include breakPoint(onlySP) {
+      margin-bottom: 36px;
+
+      &__main {
+        margin-bottom: 9px;
+      }
+      &__mainItem {
+        width: 100%;
+      }
+      &__controllerItem {
+        top: calc(50% - 24px);
+
+        &.-prev {
+          left: -6px;
+        }
+        &.-next {
+          right: -6px;
+        }
+
+        button {
+          width: 24px;
+          height: 24px;
+        }
+      }
+      &__pagerItem {
+        margin-left: 8px;
+
+        button {
+          width: 11px;
+          height: 11px;
+        }
+      }
+    }
+  }
+}

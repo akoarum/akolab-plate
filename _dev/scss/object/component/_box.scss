@@ -1,0 +1,188 @@
+@charset 'UTF-8';
+
+/*
+#overview
+ボックス
+*/
+
+/*
+#styleguide
+ボックス
+
+```
+<section class="c-box">
+  <h3 class="c-box__title">トグルハンドラ</h3>
+  <div class="c-box__content">
+    <div class="c-box__contentInner">
+      <div class="c-txt-group">
+        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>テキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>テキストテキストテキストテキストテキストテキスト</p>
+      </div><!-- /.c-txt-group -->
+      <div class="c-txt-group">
+        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>テキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>テキストテキストテキストテキストテキストテキスト</p>
+      </div><!-- /.c-txt-group -->
+    </div><!-- /.c-box__contentInner -->
+  </div><!-- /.c-box__content -->
+</section><!-- /.c-box fn-toggle -->
+```
+*/
+
+.c-box {
+  &__title {
+    border-bottom: 1px solid $color-effect;
+  }
+  &__contentInner {
+    > *:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  @include breakPoint(overTablet) {
+    margin-bottom: 32px;
+
+    &__title {
+      padding: 8px 12px 7px;
+    }
+    &__contentInner {
+      padding: 18px 12px 0;
+    }
+  }
+}
+
+/*
+#styleguide
+タブボックス
+
+```
+<div class="c-box-tab fn-tab">
+  <ul class="c-box-tab__list fn-tab__list">
+    <li class="c-box-tab__listItem"><a href="#tab-01">タブ1</a></li>
+    <li class="c-box-tab__listItem"><a href="#tab-02">タブ2</a></li>
+    <li class="c-box-tab__listItem"><a href="#tab-03">タブ3</a></li>
+  </ul>
+
+  <div id="tab-01" class="c-box-tab__content fn-tab__content">
+    <div class="c-txt-group">
+      <p>#tab-01テキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      <p>テキストテキストテキストテキストテキスト</p>
+      <p>テキストテキストテキストテキストテキストテキストテキスト</p>
+      <p>テキストテキストテキストテキストテキストテキストテキストテキスト</p>
+    </div><!-- /.c-txt-group -->
+  </div><!-- /.c-box-tab__content -->
+  <div id="tab-02" class="c-box-tab__content fn-tab__content">
+    <div class="c-txt-group">
+      <p>#tab-02テキストテキストテキスト</p>
+      <p>テキストテキストテキストテキストテキストテキストテキスト</p>
+      <p>テキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      <p>テキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+    </div><!-- /.c-txt-group -->
+  </div><!-- /.c-box-tab__content -->
+  <div id="tab-03" class="c-box-tab__content fn-tab__content">
+    <div class="c-txt-group">
+      <p>#tab-03テキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      <p>テキストテキストテキストテキストテキスト</p>
+      <p>テキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      <p>テキストテキストテキストテキストテキストテキストテキスト</p>
+    </div><!-- /.c-txt-group -->
+  </div><!-- /.c-box-tab__content -->
+</div><!-- /.c-box-tab -->
+```
+*/
+
+.c-box-tab {
+  &__list {
+    @include clearfix();
+    margin-bottom: 12px;
+  }
+  &__listItem {
+    float: left;
+    border-left: 1px solid $color-effect;
+
+    &:first-child {
+      border-left: none;
+    }
+
+    a {
+      display: block;
+      line-height: 1.2;
+      text-decoration: none;
+      color: $color-text;
+      transition: background .3s ease;
+    }
+
+    &.is-current a {
+      background: $color-effect;
+    }
+  }
+  &__content {
+    > *:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  @include breakPoint(overTablet) {
+    margin-bottom: 32px;
+
+    &__listItem {
+      padding: 0 4px;
+
+      a {
+        padding: 7px 24px;
+        font-size: 1.7rem;
+
+        &:hover,
+        &:focus {
+          background: $color-base;
+        }
+      }
+    }
+  }
+}
+
+
+/*
+#styleguide
+サブエリアリンクボックス
+
+```
+<aside class="c-box-subLink fn-toggle">
+  <h2 class="c-box-subLink__title fn-toggle-handler">見出しテキスト</h2>
+  <div class="c-box-subLink__content fn-toggle-target">
+    <ul class="c-box-subLink__list">
+      <li class="c-box-subLink__listItem"><a href="dummy">リンクテキスト</a></li>
+      <li class="c-box-subLink__listItem"><a href="dummy">リンクテキスト</a></li>
+      <li class="c-box-subLink__listItem"><a href="dummy">リンクテキスト</a></li>
+    </ul>
+  </div><!-- /.c-box-subLink__content -->
+</aside><!-- /.c-box-subLink -->
+```
+*/
+
+.c-box-subLink {
+  &__title {
+    border-bottom: 1px solid #ccc;
+    padding: 9px 0 8px;
+    font-size: 2.2rem;
+    line-height: 1.3;
+  }
+  &__listItem {
+    a {
+      display: block;
+      padding: 12px 0 11px;
+      text-decoration: none;
+      color: #888;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  & + .c-box-subLink {
+    margin-top: 32px;
+  }
+}

@@ -1,0 +1,54 @@
+@charset 'UTF-8';
+
+/* ============================================
+ *  Global Navigation
+ * ========================================= */
+
+.l-gNav {
+  &__listItem {
+    a {
+      display: block;
+      text-decoration: none;
+      color: $color-text;
+    }
+    &.is-current {
+      a {
+        background: $color-base;
+      }
+    }
+  }
+
+  @include breakPoint(overTablet) {
+    &__list {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+    &__listItem {
+      display: table-cell;
+
+      a {
+        padding: 16px 0;
+        text-align: center;
+        transition: background .3s ease;
+
+        &:hover,
+        &:focus {
+          background: $color-base;
+        }
+      }
+    }
+  }
+  @include breakPoint(onlySP) {
+    &__list {
+      border-top: 1px solid #c0c0c0;
+    }
+    &__listItem {
+      border-bottom: 1px solid #c0c0c0;
+
+      a {
+        padding: 12px 10px;
+      }
+    }
+  }
+}

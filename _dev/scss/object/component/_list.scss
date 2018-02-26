@@ -1,0 +1,178 @@
+@charset 'UTF-8';
+
+/*
+#overview
+リスト
+*/
+
+/*
+#styleguide
+ビュレットリスト
+
+```
+<ul class="c-list-bullet">
+  <li class="c-list-bullet__item">テキストテキストテキスト</li>
+  <li class="c-list-bullet__item">テキストテキストテキストテキスト</li>
+  <li class="c-list-bullet__item">テキストテキスト</li>
+</ul>
+```
+*/
+
+.c-list-bullet {
+  margin-bottom: 22px;
+
+  &__item {
+    position: relative;
+    padding-left: 14px;
+
+    &::before {
+      position: absolute;
+      left: 2px;
+      top: .6em;
+      content: '';
+      border-radius: 50%;
+      width: 4px;
+      height: 4px;
+      background: $color-accent;
+    }
+
+    & + .c-list-bullet__item {
+      margin-top: 3px;
+    }
+  }
+}
+
+
+/*
+#styleguide
+数字付きリスト
+
+```
+<ul class="c-list-number">
+  <li class="c-list-number__item">テキストテキストテキスト</li>
+  <li class="c-list-number__item">テキストテキストテキストテキスト</li>
+  <li class="c-list-number__item">テキストテキスト</li>
+</ul>
+```
+*/
+
+.c-list-number {
+  margin-bottom: 22px;
+  counter-reset: NUMBER;
+
+  &__item {
+    position: relative;
+    padding-left: 32px;
+
+    &::before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: counter(NUMBER) '.';
+      counter-increment: NUMBER;
+    }
+
+
+    & + .c-list-number__item {
+      margin-top: 3px;
+    }
+  }
+}
+
+
+/*
+#styleguide
+新着情報リスト
+
+```
+<ul class="c-list-news">
+  <li class="c-list-news__item">
+    <time class="c-list-news__date" datetime="2017-09-12">2017.09.12</time>
+    <span class="c-list-news__txt">テキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
+  </li>
+  <li class="c-list-news__item">
+    <time class="c-list-news__date" datetime="2017-09-12">2017.09.12</time>
+    <span class="c-list-news__txt">テキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
+  </li>
+  <li class="c-list-news__item">
+    <time class="c-list-news__date" datetime="2017-09-12">2017.09.12</time>
+    <span class="c-list-news__txt">テキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
+  </li>
+  <li class="c-list-news__item">
+    <time class="c-list-news__date" datetime="2017-09-12">2017.09.12</time>
+    <span class="c-list-news__txt">テキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
+  </li>
+</ul>
+```
+*/
+
+.c-list-news {
+  @include breakPoint(overTablet) {
+    margin-bottom: 22px;
+
+    &__item {
+      display: table;
+      width: 100%;
+
+      & + .c-list-news__item {
+        margin-top: 4px;
+      }
+    }
+    &__date,
+    &__txt {
+      display: table-cell;
+      vertical-align: top;
+    }
+    &__date {
+      white-space: nowrap;
+    }
+    &__txt {
+      padding-left: 22px;
+      width: 100%;
+    }
+  }
+  @include breakPoint(onlySP) {
+    margin-bottom: 20px;
+
+    &__item {
+      & + .c-list-news__item {
+        margin-top: 14px;
+      }
+    }
+    &__date {
+      display: block;
+      margin-bottom: 4px;
+      line-height: 1.1;
+    }
+    &__txt {
+      line-height: 1.5;
+    }
+  }
+}
+
+
+/*
+#styleguide
+カテゴリー・タグリスト
+
+```
+<ul class="c-list-tag">
+  <li class="c-list-tag__item"><i>カテゴリー</i></li>
+  <li class="c-list-tag__item"><i>カテゴリー</i></li>
+</ul>
+```
+*/
+
+.c-list-tag {
+  @include clearfix();
+  margin-left: -6px;
+
+  &__item {
+    float: left;
+    margin-left: 6px;
+    padding: 5px 8px;
+    background: $color-base;
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+}

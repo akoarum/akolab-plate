@@ -1,0 +1,26 @@
+@charset 'UTF-8';
+
+/* ============================================
+ *  コンテンツ
+ * ========================================= */
+
+.l-content-column {
+  @include contentWidth();
+  display: table;
+  width: 100%;
+
+  &__main,
+  &__sub {
+    box-sizing: border-box;
+    display: table-cell;
+    vertical-align: top;
+  }
+  &__main {
+    padding-right: 28px;
+    width: 100%;
+  }
+  &__sub {
+    min-width: 204px;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,54 @@
+@charset 'UTF-8';
+
+/*
+#overview
+ボタン
+*/
+
+/*
+#styleguide
+リンクボタン
+
+```
+<a href="dummy" class="c-btn -link">リンクテキスト</a>
+```
+*/
+
+.c-btn {
+  display: inline-block;
+  background: #fff;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  color: $color-text;
+  transition: background .3s ease;
+
+  &.-submit {
+    background: #21a4ef;
+    color: #fff;
+
+    &[disabled] {
+      background: #d4d4d4;
+      color: #fff;
+      cursor: default;
+    }
+  }
+
+  @include breakPoint(overTablet) {
+    padding: 14px 32px;
+    min-width: 220px;
+    font-size: 1.8rem;
+
+    &.-submit {
+      &:hover,
+      &:focus {
+        background: #58b8ef;
+
+        &[disabled] {
+          background: #d4d4d4;
+        }
+      }
+    }
+  }
+}

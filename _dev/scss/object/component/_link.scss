@@ -1,0 +1,344 @@
+@charset 'UTF-8';
+
+/*
+#overview
+リンク
+*/
+
+/*
+#styleguide
+パンくずリスト
+
+```
+<nav class="c-link-breadcrumb">
+  <ol class="c-link-breadcrumb__list">
+    <li class="c-link-breadcrumb__listItem"><a href="dummy">TOP</a></li>
+    <li class="c-link-breadcrumb__listItem"><a href="dummy">第2階層</a></li>
+    <li class="c-link-breadcrumb__listItem is-current"><strong>カレント</strong></li>
+  </ol>
+</nav>
+```
+*/
+
+.c-link-breadcrumb {
+  @include contentWidth();
+  padding: 8px 0 7px;
+
+  &__list {
+    font-size: 0;
+  }
+  &__listItem {
+    position: relative;
+    display: inline-block;
+    padding-left: 1.6em;
+    font-size: 1.3rem;
+    line-height: 1.2;
+
+    &::before {
+      position: absolute;
+      left: 8px;
+      top: 0;
+      content: '>';
+    }
+    &:first-child {
+      padding-left: 0;
+
+      &::before {
+        display: none;
+      }
+    }
+    &.is-current {
+      strong {
+        color: #666;
+        font-weight: normal;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: #888;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+/*
+#styleguide
+ページ内リンクリスト
+
+```
+<ul class="c-link-anchor">
+  <li class="c-link-anchor__item"><a href="#dummy">テキスト</a></li>
+  <li class="c-link-anchor__item"><a href="#dummy">テキストテキスト</a></li>
+</ul>
+```
+*/
+
+.c-link-anchor {
+  margin: -22px 0 32px -22px;
+  text-align: center;
+  font-size: 0;
+
+  &__item {
+    position: relative;
+    display: inline-block;
+    margin: 22px 0 0 22px;
+    padding-left: 15px;
+    font-size: $font-size;
+
+    &::before {
+      position: absolute;
+      left: 0;
+      top: .9em;
+      content: '';
+      margin-top: -5px;
+      border-width: 6px 4px;
+      border-style: solid;
+      border-color: $color-text transparent transparent;
+    }
+  }
+}
+
+
+/*
+#styleguide
+記事リスト
+
+```
+<ul class="c-link-article">
+  <li class="c-link-article__item">
+    <a href="dummy">
+      <div class="c-link-article__txt">
+        <div class="c-link-article__txtInner">
+          <strong class="c-link-article__title">記事タイトルテキストテキスト</strong>
+          <ul class="c-link-article__meta">
+            <li class="c-link-article__metaItem"><time>2017.09.12</time></li>
+            <li class="c-link-article__metaItem">男性</li>
+          </ul>
+          <ul class="c-list-tag">
+            <li class="c-list-tagItem"><i>カテゴリー</i></li>
+          </ul>
+        </div><!-- /.c-link-article__txtInner -->
+      </div><!-- /.c-link-article__txt -->
+      <div class="c-link-article__img">
+        <div class="c-link-article__imgInner">
+          <img src="http://dummyimage.com/326x194/ccc/fff.png" alt="">
+        </div><!-- /.c-link-article__imgInner -->
+      </div><!-- /.c-link-article__img -->
+    </a>
+  </li>
+  <li class="c-link-article__item">
+    <a href="dummy">
+      <div class="c-link-article__txt">
+        <div class="c-link-article__txtInner">
+          <strong class="c-link-article__title">記事タイトルテキストテキスト</strong>
+          <ul class="c-link-article__meta">
+            <li class="c-link-article__metaItem"><time>2017.09.12</time></li>
+            <li class="c-link-article__metaItem">男性</li>
+          </ul>
+          <ul class="c-list-tag">
+            <li class="c-list-tagItem"><i>カテゴリー</i></li>
+          </ul>
+        </div><!-- /.c-link-article__txtInner -->
+      </div><!-- /.c-link-article__txt -->
+      <div class="c-link-article__img">
+        <div class="c-link-article__imgInner">
+          <img src="http://dummyimage.com/326x194/ccc/fff.png" alt="">
+        </div><!-- /.c-link-article__imgInner -->
+      </div><!-- /.c-link-article__img -->
+    </a>
+  </li>
+  <li class="c-link-article__item">
+    <a href="dummy">
+      <div class="c-link-article__txt">
+        <div class="c-link-article__txtInner">
+          <strong class="c-link-article__title">記事タイトルテキストテキスト</strong>
+          <ul class="c-link-article__meta">
+            <li class="c-link-article__metaItem"><time>2017.09.12</time></li>
+            <li class="c-link-article__metaItem">男性</li>
+          </ul>
+          <ul class="c-list-tag">
+            <li class="c-list-tagItem"><i>カテゴリー</i></li>
+          </ul>
+        </div><!-- /.c-link-article__txtInner -->
+      </div><!-- /.c-link-article__txt -->
+      <div class="c-link-article__img">
+        <div class="c-link-article__imgInner">
+          <img src="http://dummyimage.com/326x194/ccc/fff.png" alt="">
+        </div><!-- /.c-link-article__imgInner -->
+      </div><!-- /.c-link-article__img -->
+    </a>
+  </li>
+  <li class="c-link-article__item">
+    <a href="dummy">
+      <div class="c-link-article__txt">
+        <div class="c-link-article__txtInner">
+          <strong class="c-link-article__title">記事タイトルテキストテキスト</strong>
+          <ul class="c-link-article__meta">
+            <li class="c-link-article__metaItem"><time>2017.09.12</time></li>
+            <li class="c-link-article__metaItem">男性</li>
+          </ul>
+          <ul class="c-list-tag">
+            <li class="c-list-tagItem"><i>カテゴリー</i></li>
+          </ul>
+        </div><!-- /.c-link-article__txtInner -->
+      </div><!-- /.c-link-article__txt -->
+      <div class="c-link-article__img">
+        <div class="c-link-article__imgInner">
+          <img src="http://dummyimage.com/326x194/ccc/fff.png" alt="">
+        </div><!-- /.c-link-article__imgInner -->
+      </div><!-- /.c-link-article__img -->
+    </a>
+  </li>
+  <li class="c-link-article__item">
+    <a href="dummy">
+      <div class="c-link-article__txt">
+        <div class="c-link-article__txtInner">
+          <strong class="c-link-article__title">記事タイトルテキストテキスト</strong>
+          <ul class="c-link-article__meta">
+            <li class="c-link-article__metaItem"><time>2017.09.12</time></li>
+            <li class="c-link-article__metaItem">男性</li>
+          </ul>
+          <ul class="c-list-tag">
+            <li class="c-list-tagItem"><i>カテゴリー</i></li>
+          </ul>
+        </div><!-- /.c-link-article__txtInner -->
+      </div><!-- /.c-link-article__txt -->
+      <div class="c-link-article__img">
+        <div class="c-link-article__imgInner">
+          <img src="http://dummyimage.com/326x194/ccc/fff.png" alt="">
+        </div><!-- /.c-link-article__imgInner -->
+      </div><!-- /.c-link-article__img -->
+    </a>
+  </li>
+  <li class="c-link-article__item">
+    <a href="dummy">
+      <div class="c-link-article__txt">
+        <div class="c-link-article__txtInner">
+          <strong class="c-link-article__title">記事タイトルテキストテキスト</strong>
+          <ul class="c-link-article__meta">
+            <li class="c-link-article__metaItem"><time>2017.09.12</time></li>
+            <li class="c-link-article__metaItem">男性</li>
+          </ul>
+          <ul class="c-list-tag">
+            <li class="c-list-tagItem"><i>カテゴリー</i></li>
+          </ul>
+        </div><!-- /.c-link-article__txtInner -->
+      </div><!-- /.c-link-article__txt -->
+      <div class="c-link-article__img">
+        <div class="c-link-article__imgInner">
+          <img src="http://dummyimage.com/326x194/ccc/fff.png" alt="">
+        </div><!-- /.c-link-article__imgInner -->
+      </div><!-- /.c-link-article__img -->
+    </a>
+  </li>
+</ul>
+```
+*/
+
+.c-link-article {
+  @include clearfix();
+
+  &__item {
+    a {
+      display: table;
+      width: 100%;
+      color: $color-text;
+      text-decoration: none;
+    }
+  }
+  &__txt {
+    display: table-footer-group;
+  }
+  &__img {
+    display: table-header-group;
+  }
+  &__title {
+    display: block;
+  }
+  &__meta {
+    margin: 0 0 8px -6px;
+    font-size: 0;
+  }
+  &__metaItem {
+    display: inline-block;
+    margin-left: 6px;
+    line-height: 1;
+    color: #626262;
+  }
+
+  @include breakPoint(overTablet) {
+    margin: -23px 0 42px percentage(-23px / 1024px);
+
+    &__item {
+      float: left;
+      margin: 23px 0 0 percentage(23px / 1047px);
+      width: percentage(326px / 1047px);
+
+      &:nth-child(3n+1) {
+        clear: left;
+      }
+
+      a {
+        &:hover,
+        &:focus {
+          .c-link-article {
+            &__title {
+              text-decoration: underline;
+            }
+            &__imgInner {
+              img {
+                transform: scale(1.1);
+                filter: blur(2px);
+              }
+            }
+          }
+        }
+      }
+    }
+    &__txtInner {
+      margin-top: 11px;
+    }
+    &__title {
+      margin-bottom: 6px;
+    }
+    &__metaItem {
+      font-size: 1.4rem;
+    }
+    &__imgInner {
+      overflow: hidden;
+
+      img {
+        transition: transform .3s ease,
+                    filter .3s ease;
+      }
+    }
+  }
+
+  @include breakPoint(onlySP) {
+    margin-bottom: 32px;
+
+    &__item {
+      & + .c-link-article__item {
+        margin-top: 24px;
+      }
+    }
+    &__txtInner {
+      margin-top: 10px;
+    }
+    &__title {
+      margin-bottom: 6px;
+    }
+    &__metaItem {
+      font-size: 1.3rem;
+    }
+    &__imgInner {
+      text-align: center;
+    }
+  }
+}

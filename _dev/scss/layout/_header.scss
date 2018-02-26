@@ -1,0 +1,127 @@
+@charset 'UTF-8';
+
+/* ============================================
+ *  ヘッダー
+ * ========================================= */
+
+.l-header {
+  background: #fff;
+
+  &__logo {
+    line-height: 1;
+  }
+  &__contact {
+    font-size: 0;
+    text-align: right;
+  }
+  &__contactItem {
+    display: inline-block;
+    font-size: 1.4rem;
+    line-height: 1;
+
+    a {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      color: $color-text;
+      transition: background .3s ease;
+      outline: none;
+    }
+
+    // お問い合わせ
+    &.-contact {
+      a {
+        background: $color-base;
+      }
+    }
+
+    // 相談予約
+    &.-reserve {
+      a {
+        background: #e6e6e6;
+      }
+    }
+  }
+
+  @include breakPoint(overTablet) {
+    &__inner {
+      display: table;
+      box-sizing: border-box;
+      padding: 0 0 0 12px;
+      width: 100%;
+    }
+    &__branding,
+    &__utility {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    &__branding {
+      width: 100%;
+    }
+    &__utility {
+      white-space: nowrap;
+    }
+    &__contactItem {
+      a {
+        padding: 32px 0;
+        width: 128px;
+      }
+
+      // お問い合わせ
+      &.-contact {
+        a {
+          &:hover,
+          &:focus {
+            background: #d8d8d8;
+          }
+        }
+      }
+
+      // 相談予約
+      &.-reserve {
+        a {
+          &:hover,
+          &:focus {
+            background: #d8d8d8;
+          }
+        }
+      }
+    }
+  }
+  @include breakPoint(onlySP) {
+    &__inner {
+      @include clearfix();
+      padding: 9px 10px;
+    }
+    &__branding {
+      float: left;
+    }
+    &__utility {
+      @include clearfix();
+      float: right;
+    }
+    &__logo {
+      img {
+        width: 142px;
+        height: auto;
+      }
+    }
+    &__contact {
+      float: left;
+    }
+    &__contactItem {
+      margin-left: 8px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      a {
+        width: 42px;
+        height: 42px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+  }
+}

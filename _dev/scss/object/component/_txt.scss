@@ -1,0 +1,61 @@
+@charset 'UTF-8';
+
+/*
+#overview
+テキスト
+*/
+
+/*
+#styleguide
+テキストグループ
+
+```
+<div class="c-txt-group">
+  <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+  <p>テキストテキストテキストテキストテキストテキストテキストテキスト</p>
+  <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+</div><!-- /.c-txt-group -->
+```
+*/
+
+.c-txt-group {
+  margin-bottom: 22px;
+}
+
+
+/*
+#styleguide
+リード文
+
+```
+<div class="c-txt-lead">
+  <p class="c-txt-lead__txt"><b>リード文テキストテキストテキストテキストテキストテキストテキストテキスト</b></p>
+</div><!-- /.c-txt-lead -->
+```
+*/
+
+.c-txt-lead {
+  &__txt {
+    b {
+      font-weight: normal;
+    }
+  }
+
+  @include breakPoint(overTablet) {
+    margin-bottom: 26px;
+    text-align: center;
+
+    &__txt {
+      font-size: 2rem;
+      line-height: 1.4;
+    }
+  }
+  @include breakPoint(onlySP) {
+    margin-bottom: 22px;
+
+    &__txt {
+      font-size: 1.8rem;
+      line-height: 1.5;
+    }
+  }
+}

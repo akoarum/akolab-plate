@@ -1,0 +1,128 @@
+@charset 'UTF-8';
+
+/*
+#overview
+セクション
+*/
+
+/*
+#styleguide
+外側セクション
+
+```
+<section class="c-sec">
+  <div class="c-sec__inner">
+    <h2 class="c-hdg-lv2">見出しレベル2テキスト</h2>
+
+    <div class="c-txt-group">
+      <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      <p>テキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+    </div><!-- /.c-txt-group -->
+  </div><!-- /.inner -->
+</section><!-- /.c-sec -->
+```
+*/
+
+.c-sec {
+  &__inner {
+    @include contentWidth();
+
+    > *:first-child {
+      margin-top: 0 !important;
+    }
+    > *:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+
+/*
+#styleguide
+コンタクトインフォメーション
+
+```
+<aside class="c-sec-contactInfo">
+  <div class="c-sec-contactInfo__inner">
+    <div class="c-sec-contactInfo__header">
+      <h2 class="c-sec-contactInfo__title">テキストテキストテキスト</h2>
+      <p class="c-sec-contactInfo__lead"><b>テキストテキストテキストテキストテキストテキスト</b></p>
+    </div><!-- /.c-sec-contactInfo__header -->
+    <div class="c-sec-contactInfo__content">
+      <p class="c-sec-contactInfo__tel">000-000-000</p>
+      <ul class="c-sec-contactInfo__link">
+        <li class="c-sec-contactInfo__linkItem"><a href="dummy">お問い合わせ</a></li>
+        <li class="c-sec-contactInfo__linkItem"><a href="dummy">相談予約</a></li>
+        <li class="c-sec-contactInfo__linkItem -privacyPolicy"><a href="dummy">プライバシーポリシー</a></li>
+      </ul>
+    </div><!-- /.c-sec-contactInfo__content -->
+  </div><!-- /.c-sec-contactInfo__inner -->
+</aside><!-- /.c-sec-contactInfo -->
+```
+*/
+
+.c-sec-contactInfo {
+  margin-top: 60px;
+  min-width: $minWidth-base;
+  background: $color-effect;
+
+  &__inner {
+    @include contentWidth();
+    @include clearfix();
+    display: table;
+    padding: 34px 0;
+    width: 100%;
+  }
+  &__header,
+  &__content {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  &__header {
+    width: 100%;
+  }
+  &__content {
+    white-space: nowrap;
+  }
+  &__title {
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  &__lead {
+    font-size: 1.7rem;
+    b {
+      font-weight: normal;
+    }
+  }
+  &__tel {
+    margin-bottom: 13px;
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1;
+    letter-spacing: .04em;
+  }
+  &__link {
+    font-size: 0;
+    text-align: right;
+  }
+  &__linkItem {
+    margin-left: 12px;
+    font-size: $font-size;
+    display: inline-block;
+
+    &:first-child {
+      margin-left: 0;
+    }
+    &.-privacyPolicy {
+      display: block;
+      margin: 7px 0 0 0;
+      text-align: left;
+
+      a {
+        font-size: 1.4rem;
+        color: $color-text;
+      }
+    }
+  }
+}

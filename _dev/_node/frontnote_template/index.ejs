@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title><%=title%> - FrontNote</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <%- css %>
+</head>
+<body>
+<header role="banner" class="sg-header">
+  <div class="sg-mobile-visible sg-drawer-trigger"><a class="sg-icon sg-bars sg-icon-link"></a></div>
+  <h1 class="sg-title"><a href="./index.html"><%= title %></a></h1>
+</header><!-- /.sg-header -->
+
+<div class="sg-container">
+  <nav role="navigation" class="sg-sidebar">
+    <ul class="sg-nav">
+      <li class="sg-nav__item<% if (overview) { %> is-current<% } %>"><a href="./index.html">概要</a></li>
+      <%# 全ファイル %>
+      <% files.forEach(function(file) { %>
+      <%# スタイルガイドへのリンク %>
+      <li class="sg-nav__item<% if (helpers.isCurrent(current, file)) { %> is-current<% } %>"><a href="<%- file.url %>">
+        <% if (file.overview) { %>
+          <%- file.overview.title %>
+        <% } else { %>
+          <%- file.fileName %>
+        <% } %>
+      </a></li>
+      <% }) %>
+    </ul>
+  </nav><!-- /.sg-sidebar -->
+  <% if (overview) { %>
+    <section class="sg-content sg-overview">
+      <%# index.htmlファイルのとき %>
+      <%# currentにstyleguide.mdがHTMLとして格納されている %>
+      <%- current %>
+    </section>
+  <% } else { %>
+    <section class="sg-content">
+      <h2 class="sg-heading2">
+        <% if (current.overview) { %>
+        <%- current.overview.title %>
+        <% } else { %>
+        <%- current.fileName %>
+        <% } %>
+        <span class="sg-sub-heading"><%- current.file %></span>
+      </h2>
+      <% if (current.overview) { %>
+        <p class="sg-comment"><%- current.overview.comment %></p>
+      <% } %>
+
+      <% if (current.colors) { %>
+        <div class="sg-color-pallet-container">
+          <% current.colors.forEach(function(color) { %>
+            <div class="sg-color-pallet">
+              <h3 class="sg-heading3"><%- color.name %></h3>
+              <div class="sg-color-panel" style="background-color:<%- color.color %>"></div>
+              <p class="sg-comment"><%- color.color %></p>
+            </div>
+          <% }); %>
+        </div>
+      <% } %>
+
+      <% if (current.sections) { %>
+        <% current.sections.forEach(function(section) { %>
+          <article class="sg-article">
+            <h3 class="sg-heading3"><%- section.title %></h3>
+            <% if (section.attributes) { %>
+              <ul class="sg-attribute">
+                <% section.attributes.forEach(function(attribute) { %>
+                  <% if (attribute.toLowerCase() === 'deprecated' || attribute === '非推奨') { %>
+                    <li class="sg-attribute-item sg-attribute-deprecated"><%= attribute %></li>
+                  <% } else if (attribute.toLowerCase() === 'todo') { %>
+                    <li class="sg-attribute-item sg-attribute-todo"><%= attribute %></li>
+                  <% } else { %>
+                    <li class="sg-attribute-item"><%= attribute %></li>
+                  <% } %>
+                <% }); %>
+              </ul>
+            <% } %>
+            <p class="sg-comment"><%- section.comment %></p>
+            <% if (section.code) { %>
+              <div class="sg-preview">
+                <%- section.code %>
+              </div>
+              <pre class="sg-pre"><i class="sg-icon sg-hand-o-down"> 選択</i><code class="sg-code" data-language="html"><%= section.code %></code></pre>
+            <% } %>
+          </article>
+        <% }) %>
+      <% } %>
+      <div class="sg-pagetop">
+        <a href="" class="sg-icon sg-chevron-up"></a>
+      </div>
+    </section>
+  <% } %>
+</div>
+<script src="assets/lib/jquery.js"></script>
+<script src="assets/lib/jquery.mousewheel.js"></script>
+<script src="assets/lib/highlight.pack.js"></script>
+<script src="assets/js/ripple-effect.js"></script>
+<script src="assets/js/main.js"></script>
+<%- script %>
+</body>
+</html>
